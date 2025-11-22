@@ -1,44 +1,97 @@
 <script>
   /**
    * CardView Component
-   * Displays a card with front/back flip functionality
+   * Displays a card with zoom/pan/rotate animation to reveal Easter eggs
    */
   let {
     year = 2024,
     imagePath = '',
-    hintRegion = { x: 50, y: 50, zoom: 150, rotation: 0 },
+    zoomTarget = { x: 50, y: 50, maxZoom: 3, rotation: 0 },
     isCurrentYear = false,
-    isFlipped = false,
+    isZoomed = false,
     showTapPrompt = false,
-    tapPromptText = 'Tap to flip',
-    onFlip = () => {}
+    tapPromptText = 'Tap to zoom',
+    onZoom = () => {},
+    devMode = false
   } = $props();
 
   let isAnimating = $state(false);
+  let imageContainer = $state(null);
+  let clicks = $state([]);
 
-  function handleCardClick() {
+  function handleCardClick(event) {
+    if (devMode) {
+      handleDevModeClick(event);
+      return;
+    }
+
     if (isAnimating) return;
     isAnimating = true;
-    onFlip();
+    onZoom();
     setTimeout(() => {
       isAnimating = false;
-    }, 500); // Match flip animation duration
+    }, 2000); // Match zoom animation duration
   }
 
-  // Calculate the transform for the cutout
-  let cutoutStyle = $derived(() => {
-    const { x, y, zoom, rotation } = hintRegion;
-    // Convert percentage position to CSS transform
-    const translateX = -(x - 50);
-    const translateY = -(y - 50);
-    const scale = zoom / 100;
+  function handleDevModeClick(event) {
+    if (!imageContainer) return;
+
+    const rect = imageContainer.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+    clicks.push({ x, y });
+
+    // Log for single click (center point estimation)
+    if (clicks.length === 1) {
+      console.log(`Year ${year} - Click 1: x=${x.toFixed(1)}%, y=${y.toFixed(1)}%`);
+    }
+
+    // Log for two clicks (bounding box)
+    if (clicks.length === 2) {
+      const x1 = Math.min(clicks[0].x, clicks[1].x);
+      const x2 = Math.max(clicks[0].x, clicks[1].x);
+      const y1 = Math.min(clicks[0].y, clicks[1].y);
+      const y2 = Math.max(clicks[0].y, clicks[1].y);
+
+      const centerX = (x1 + x2) / 2;
+      const centerY = (y1 + y2) / 2;
+      const width = x2 - x1;
+      const height = y2 - y1;
+
+      console.log(`Year ${year} - Click 2: x=${x.toFixed(1)}%, y=${y.toFixed(1)}%`);
+      console.log(`Year ${year} - Box: center=(${centerX.toFixed(1)}%, ${centerY.toFixed(1)}%), size=${width.toFixed(1)}% x ${height.toFixed(1)}%`);
+      console.log(`Year ${year} - RESULT: { x: ${centerX.toFixed(1)}, y: ${centerY.toFixed(1)}, maxZoom: 3, rotation: 0 }`);
+      console.log('---');
+
+      // Reset for next card
+      clicks = [];
+    }
+  }
+
+  // Calculate the transform for the zoom
+  let imageStyle = $derived(() => {
+    // In dev mode, always show the rotation so coordinates match the visual
+    if (devMode) {
+      return `transform: scale(1) rotate(${zoomTarget.rotation}deg); transform-origin: center center;`;
+    }
+
+    if (!isZoomed) {
+      return 'transform: scale(1) rotate(0deg); transform-origin: center center;';
+    }
+
+    const { x, y, maxZoom, rotation } = zoomTarget;
+    // Convert percentage position to transform offset
+    // When zoomed, we want to center the target point
+    const offsetX = -(x - 50) * maxZoom;
+    const offsetY = -(y - 50) * maxZoom;
 
     return `
       transform:
-        translate(${translateX}%, ${translateY}%)
-        scale(${scale})
+        translate(${offsetX}%, ${offsetY}%)
+        scale(${maxZoom})
         rotate(${rotation}deg);
-      transform-origin: center;
+      transform-origin: center center;
     `;
   });
 </script>
@@ -49,36 +102,27 @@
 
   <button
     class="card-wrapper"
-    class:flipped={isFlipped}
+    class:zoomed={isZoomed}
     onclick={handleCardClick}
-    aria-label={isFlipped ? 'Flip to front' : 'Flip to back'}
+    aria-label={isZoomed ? 'Tap to zoom out' : 'Tap to zoom in'}
   >
-    <div class="card">
-      <!-- Front Face -->
-      <div class="card-face card-front">
-        <img
-          src={imagePath}
-          alt="Christmas card {year}"
-          class="card-image"
-        />
-        {#if showTapPrompt && !isFlipped}
-          <div class="tap-prompt">
-            {tapPromptText}
-          </div>
-        {/if}
-      </div>
-
-      <!-- Back Face - Image Cutout -->
-      <div class="card-face card-back">
-        <div class="cutout-container">
-          <img
-            src={imagePath}
-            alt="Zoomed detail from {year}"
-            class="cutout-image"
-            style={cutoutStyle()}
-          />
+    <div class="card-image-container" bind:this={imageContainer}>
+      <img
+        src={imagePath}
+        alt="Christmas card {year}"
+        class="card-image"
+        style={imageStyle()}
+      />
+      {#if showTapPrompt && !isZoomed && !devMode}
+        <div class="tap-prompt">
+          {tapPromptText}
         </div>
-      </div>
+      {/if}
+      {#if devMode}
+        <div class="dev-mode-indicator">
+          DEV MODE - Click {clicks.length === 0 ? 'top-left corner' : 'bottom-right corner'} of target area
+        </div>
+      {/if}
     </div>
   </button>
 </div>
@@ -103,75 +147,35 @@
 
   .card-wrapper {
     width: 100%;
-    perspective: 1000px;
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
     display: block;
-  }
-
-  .card {
-    position: relative;
-    width: 100%;
-    transform-style: preserve-3d;
-    transition: transform var(--timing-flip) var(--ease);
-  }
-
-  .card-wrapper.flipped .card {
-    transform: rotateY(180deg);
-  }
-
-  .card-face {
-    width: 100%;
-    backface-visibility: hidden;
-    border-radius: var(--card-radius);
     overflow: hidden;
+    border-radius: var(--card-radius);
   }
 
-  .card-front {
+  .card-image-container {
     position: relative;
-  }
-
-  .card-back {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
-    transform: rotateY(180deg);
+    overflow: hidden;
+    border-radius: var(--card-radius);
     background: #000000;
-    overflow: hidden;
-    border-radius: var(--card-radius);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
                 0 0 0 1px rgba(255, 255, 255, 0.1);
-  }
-
-  .cutout-container {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-    border-radius: var(--card-radius);
-  }
-
-  .cutout-image {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: auto;
-    display: block;
-    will-change: transform;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .card-image {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: var(--card-radius);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
-                0 0 0 1px rgba(255, 255, 255, 0.1);
+    transform-origin: center center;
+    transition: transform 2s cubic-bezier(0.4, 0.0, 0.2, 1);
+    will-change: transform;
   }
 
   .tap-prompt {
@@ -187,6 +191,22 @@
     opacity: 0;
     animation: fadeInOut 2s ease-in-out infinite;
     pointer-events: none;
+    z-index: 10;
+  }
+
+  .dev-mode-indicator {
+    position: absolute;
+    top: var(--spacing-md);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 165, 0, 0.9);
+    color: #000;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: 20px;
+    font-size: var(--font-size-small);
+    font-weight: 600;
+    pointer-events: none;
+    z-index: 10;
   }
 
   @keyframes fadeInOut {
@@ -196,13 +216,8 @@
 
   /* Reduced motion support */
   @media (prefers-reduced-motion: reduce) {
-    .card {
+    .card-image {
       transition: opacity var(--timing-fast) var(--ease);
-    }
-
-    .card-wrapper.flipped .card {
-      transform: none;
-      opacity: 0.9;
     }
 
     .tap-prompt {
