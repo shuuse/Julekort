@@ -2,10 +2,10 @@
  * Cards data structure for CardsOverTime
  * Each card represents a yearly Christmas card
  *
- * hintRegion format:
- * - x, y: Center position as percentage (0-100) of image dimensions
- * - zoom: Zoom level (100 = no zoom, 200 = 2x zoom, 50 = zoomed out)
- * - rotation: Rotation in degrees (0 = no rotation)
+ * zoomTarget format:
+ * - x, y: Center position as percentage (0-100) of image dimensions where zoom focuses
+ * - maxZoom: Maximum zoom level (1 = no zoom, 2 = 2x zoom, 3 = 3x zoom, etc.)
+ * - rotation: Rotation in degrees (0 = no rotation, positive = clockwise)
  */
 
 export const cards = [
@@ -18,14 +18,10 @@ export const cards = [
       en: 'Christmas, 2024',
       no: 'Julen 2024'
     },
-    hint: {
-      en: '',
-      no: ''
-    },
-    hintRegion: {
-      x: 20,
-      y: 20,
-      zoom: 150,
+    zoomTarget: {
+      x: 72.7,
+      y: 46.5,
+      maxZoom: 8,  // Small box (18.6% x 14.5%) = tight zoom
       rotation: 90
     }
   },
@@ -39,11 +35,12 @@ export const cards = [
       en: 'Christmas, 2023',
       no: 'Julen 2023'
     },
-    hint: {
-      en: 'Look closely at the details in this photo.',
-      no: 'Se nøye på detaljene i dette bildet.'
-    },
-    hintRegion: { x: 50, y: 50, zoom: 150, rotation: 0 }
+    zoomTarget: {
+      x: 42.8,
+      y: 32.9,
+      maxZoom: 4,  // Medium box (18.6% x 36.0%) = moderate zoom
+      rotation: 0
+    }
   },
   {
     year: 2022,
@@ -53,11 +50,12 @@ export const cards = [
       en: 'Christmas, 2022',
       no: 'Julen 2022'
     },
-    hint: {
-      en: 'Something small is hiding in plain sight.',
-      no: 'Noe lite gjemmer seg like foran deg.'
-    },
-    hintRegion: { x: 50, y: 50, zoom: 150, rotation: 0 }
+    zoomTarget: {
+      x: 14.1,
+      y: 84.9,
+      maxZoom: 5,  // Small box (16.1% x 18.7%) = tight zoom
+      rotation: 0
+    }
   },
   {
     year: 2021,
@@ -67,11 +65,12 @@ export const cards = [
       en: 'Christmas, 2021',
       no: 'Julen 2021'
     },
-    hint: {
-      en: 'Check the background carefully.',
-      no: 'Sjekk bakgrunnen nøye.'
-    },
-    hintRegion: { x: 50, y: 50, zoom: 150, rotation: 0 }
+    zoomTarget: {
+      x: 26.5,
+      y: 81.2,
+      maxZoom: 5,  // Wide box (57.2% x 19.5%) = gentle zoom
+      rotation: 195
+    }
   },
   {
     year: 2020,
@@ -81,11 +80,12 @@ export const cards = [
       en: 'Christmas, 2020',
       no: 'Julen 2020'
     },
-    hint: {
-      en: 'Look for something unexpected.',
-      no: 'Se etter noe uventet.'
-    },
-    hintRegion: { x: 50, y: 50, zoom: 150, rotation: 0 }
+    zoomTarget: {
+      x: 40.7,
+      y: 86.2,
+      maxZoom: 1.5,  // Very wide box (67.6% x 26.0%) = minimal zoom
+      rotation: 0
+    }
   },
   {
     year: 2019,
@@ -95,11 +95,12 @@ export const cards = [
       en: 'Christmas, 2019',
       no: 'Julen 2019'
     },
-    hint: {
-      en: 'The secret is in the surroundings.',
-      no: 'Hemmeligheten er i omgivelsene.'
-    },
-    hintRegion: { x: 50, y: 50, zoom: 150, rotation: 0 }
+    zoomTarget: {
+      x: 12.4,
+      y: 55.8,
+      maxZoom: 1,  // Very tall box (11.0% x 79.5%) = minimal zoom
+      rotation: 180
+    }
   },
   {
     year: 2018,
@@ -109,11 +110,12 @@ export const cards = [
       en: 'Christmas, 2018',
       no: 'Julen 2018'
     },
-    hint: {
-      en: 'Pay attention to the small details.',
-      no: 'Legg merke til de små detaljene.'
-    },
-    hintRegion: { x: 50, y: 50, zoom: 150, rotation: 0 }
+    zoomTarget: {
+      x: 17.2,
+      y: 34.6,
+      maxZoom: 4.5,  // Small box (17.2% x 21.8%) = tight zoom
+      rotation: 0
+    }
   },
   {
     year: 2017,
@@ -123,11 +125,12 @@ export const cards = [
       en: 'Christmas, 2017',
       no: 'Julen 2017'
     },
-    hint: {
-      en: 'Something is hiding in this scene.',
-      no: 'Noe gjemmer seg i denne scenen.'
-    },
-    hintRegion: { x: 50, y: 50, zoom: 150, rotation: 0 }
+    zoomTarget: {
+      x: 26.5,
+      y: 87.4,
+      maxZoom: 4,  // Small box (15.5% x 23.7%) = tight zoom
+      rotation: 0
+    }
   },
   {
     year: 2016,
@@ -137,11 +140,12 @@ export const cards = [
       en: 'Christmas, 2016',
       no: 'Julen 2016'
     },
-    hint: {
-      en: 'Look at the edges of the photo.',
-      no: 'Se på kantene av bildet.'
-    },
-    hintRegion: { x: 50, y: 50, zoom: 150, rotation: 0 }
+    zoomTarget: {
+      x: 17.6,
+      y: 56.8,
+      maxZoom: 4,  // Medium box (23.4% x 46.2%) = moderate zoom
+      rotation: 180
+    }
   },
   {
     year: 2015,
@@ -151,11 +155,12 @@ export const cards = [
       en: 'Christmas, 2015',
       no: 'Julen 2015'
     },
-    hint: {
-      en: 'The Easter egg is cleverly hidden.',
-      no: 'Påskeegget er smart gjemt.'
-    },
-    hintRegion: { x: 50, y: 50, zoom: 150, rotation: 0 }
+    zoomTarget: {
+      x: 71.7,
+      y: 46.8,
+      maxZoom: 1.4,  // Very large box (48.5% x 69.7%) = minimal zoom
+      rotation: 0
+    }
   },
   {
     year: 2014,
@@ -165,11 +170,12 @@ export const cards = [
       en: 'Christmas, 2014',
       no: 'Julen 2014'
     },
-    hint: {
-      en: 'Search the entire frame carefully.',
-      no: 'Søk i hele bildet nøye.'
-    },
-    hintRegion: { x: 50, y: 50, zoom: 150, rotation: 0 }
+    zoomTarget: {
+      x: 87.5,
+      y: 59.1,
+      maxZoom: 1.8,  // Tall box (22.0% x 54.5%) = gentle zoom
+      rotation: 0
+    }
   },
   {
     year: 2013,
@@ -179,11 +185,12 @@ export const cards = [
       en: 'Christmas, 2013',
       no: 'Julen 2013'
     },
-    hint: {
-      en: 'There is something special in this photo.',
-      no: 'Det er noe spesielt i dette bildet.'
-    },
-    hintRegion: { x: 50, y: 50, zoom: 150, rotation: 0 }
+    zoomTarget: {
+      x: 1.4,
+      y: 45.1,
+      maxZoom: 2,  // Very tall box (17.5% x 68.0%) = minimal zoom
+      rotation: 0
+    }
   },
   {
     year: 2012,
@@ -193,11 +200,12 @@ export const cards = [
       en: 'Christmas, 2012',
       no: 'Julen 2012'
     },
-    hint: {
-      en: 'Look for the unexpected detail.',
-      no: 'Se etter den uventede detaljen.'
-    },
-    hintRegion: { x: 50, y: 50, zoom: 150, rotation: 0 }
+    zoomTarget: {
+      x: 93.5,
+      y: 40.9,
+      maxZoom: 4,  // Small box (11.0% x 22.4%) = tight zoom
+      rotation: 0
+    }
   },
   {
     year: 2011,
@@ -207,11 +215,12 @@ export const cards = [
       en: 'Christmas, 2011',
       no: 'Julen 2011'
     },
-    hint: {
-      en: 'The secret is waiting to be found.',
-      no: 'Hemmeligheten venter på å bli funnet.'
-    },
-    hintRegion: { x: 50, y: 50, zoom: 150, rotation: 0 }
+    zoomTarget: {
+      x: 67.5,
+      y: 50.4,
+      maxZoom: 1.4,  // Very large box (50.1% x 69.3%) = minimal zoom
+      rotation: 0
+    }
   },
   {
     year: 2010,
@@ -221,11 +230,12 @@ export const cards = [
       en: 'Christmas, 2010',
       no: 'Julen 2010'
     },
-    hint: {
-      en: 'Check every corner of the image.',
-      no: 'Sjekk hvert hjørne av bildet.'
-    },
-    hintRegion: { x: 50, y: 50, zoom: 150, rotation: 0 }
+    zoomTarget: {
+      x: 47.0,
+      y: 47.4,
+      maxZoom: 4.5,  // Small box (11.0% x 21.6%) = tight zoom
+      rotation: 0
+    }
   },
   {
     year: 2009,
@@ -235,11 +245,12 @@ export const cards = [
       en: 'Christmas, 2009',
       no: 'Julen 2009'
     },
-    hint: {
-      en: 'Something small is hidden here.',
-      no: 'Noe lite er gjemt her.'
-    },
-    hintRegion: { x: 50, y: 50, zoom: 150, rotation: 0 }
+    zoomTarget: {
+      x: 39.0,
+      y: 46.0,
+      maxZoom: 3.5,  // Small box (14.6% x 27.5%) = tight zoom
+      rotation: 0
+    }
   },
   {
     year: 2008,
@@ -249,10 +260,11 @@ export const cards = [
       en: 'Christmas, 2008',
       no: 'Julen 2008'
     },
-    hint: {
-      en: 'Where the tradition began...',
-      no: 'Der tradisjonen begynte...'
-    },
-    hintRegion: { x: 50, y: 50, zoom: 150, rotation: 0 }
+    zoomTarget: {
+      x: 56.5,
+      y: 50.8,
+      maxZoom: 1.5,  // Very large box (53.0% x 64.6%) = minimal zoom
+      rotation: 0
+    }
   }
 ];

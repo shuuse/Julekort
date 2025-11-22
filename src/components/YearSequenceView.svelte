@@ -13,11 +13,12 @@
     tapPromptText = '',
     currentYearBackText = '',
     homeText = '',
+    devMode = false,
     onContinue = () => {},
     onHome = () => {}
   } = $props();
 
-  let isFlipped = $state(false);
+  let isZoomed = $state(false);
   let showTapPrompt = $state(true);
   let internalIndex = $state(currentIndex);
 
@@ -26,8 +27,8 @@
   let canGoForward = $derived(internalIndex < cards.length - 1);
   let isLastCard = $derived(internalIndex === cards.length - 1);
 
-  function handleCardFlip() {
-    isFlipped = !isFlipped;
+  function handleCardZoom() {
+    isZoomed = !isZoomed;
     showTapPrompt = false;
   }
 
@@ -37,7 +38,7 @@
     } else {
       // Move to next card
       internalIndex++;
-      isFlipped = false;
+      isZoomed = false;
       showTapPrompt = true;
     }
   }
@@ -45,7 +46,7 @@
   function handleBack() {
     if (canGoBack) {
       internalIndex--;
-      isFlipped = false;
+      isZoomed = false;
       showTapPrompt = true;
     }
   }
@@ -54,7 +55,7 @@
     console.log('handleForward called, canGoForward:', canGoForward, 'isLastCard:', isLastCard, 'internalIndex:', internalIndex);
     if (canGoForward) {
       internalIndex++;
-      isFlipped = false;
+      isZoomed = false;
       showTapPrompt = true;
       console.log('Moving forward to index:', internalIndex);
     } else if (isLastCard) {
@@ -79,12 +80,13 @@
       <CardView
         year={currentCard.year}
         imagePath={currentCard.imagePath}
-        hintRegion={currentCard.hintRegion || { x: 50, y: 50, zoom: 150, rotation: 0 }}
+        zoomTarget={currentCard.zoomTarget || { x: 50, y: 50, maxZoom: 3, rotation: 0 }}
         isCurrentYear={currentCard.isCurrentYear}
-        {isFlipped}
+        {isZoomed}
         {showTapPrompt}
         {tapPromptText}
-        onFlip={handleCardFlip}
+        {devMode}
+        onZoom={handleCardZoom}
       />
     </div>
 

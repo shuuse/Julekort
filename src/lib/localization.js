@@ -15,7 +15,7 @@ export const translations = {
     currentYearBridge: "Let's look at previous years…",
 
     // Card interaction
-    tapToFlip: "Tap to flip",
+    tapToZoom: "Tap to zoom",
     continue: "Continue",
 
     // Navigation
@@ -40,7 +40,7 @@ export const translations = {
     currentYearBridge: "La oss se på tidligere år…",
 
     // Card interaction
-    tapToFlip: "Trykk for å snu",
+    tapToZoom: "Trykk for å zoome",
     continue: "Fortsett",
 
     // Navigation

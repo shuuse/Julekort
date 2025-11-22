@@ -22,10 +22,21 @@
   let currentState = $state(STATES.INTRO);
   let locale = $state('en');
   let currentCardIndex = $state(0);
+  let devMode = $state(false);
 
   // Detect language on mount
   onMount(() => {
     locale = detectLanguage();
+
+    // Check for dev mode URL parameter (?dev=true)
+    const params = new URLSearchParams(window.location.search);
+    devMode = params.get('dev') === 'true';
+
+    if (devMode) {
+      console.log('=== DEV MODE ENABLED ===');
+      console.log('Click two corners of the target area on each card to log coordinates');
+      console.log('======================');
+    }
   });
 
   // Get current year card
@@ -77,7 +88,8 @@
       {cards}
       currentIndex={currentCardIndex}
       {locale}
-      tapPromptText={t('tapToFlip', locale)}
+      {devMode}
+      tapPromptText={t('tapToZoom', locale)}
       currentYearBackText={t('currentYearBack', locale)}
       homeText={t('home', locale)}
       onContinue={handleContinueFromSequence}
