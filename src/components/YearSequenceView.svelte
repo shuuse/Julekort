@@ -21,6 +21,7 @@
   let isZoomed = $state(false);
   let showTapPrompt = $state(true);
   let internalIndex = $state(currentIndex);
+  let skipTransition = $state(false);
 
   let currentCard = $derived(cards[internalIndex] || {});
   let canGoBack = $derived(internalIndex > 0);
@@ -28,6 +29,7 @@
   let isLastCard = $derived(internalIndex === cards.length - 1);
 
   function handleCardZoom() {
+    skipTransition = false;
     isZoomed = !isZoomed;
     showTapPrompt = false;
   }
@@ -45,18 +47,22 @@
 
   function handleBack() {
     if (canGoBack) {
-      internalIndex--;
+      // Skip transition when navigating
+      skipTransition = true;
       isZoomed = false;
       showTapPrompt = true;
+      internalIndex--;
     }
   }
 
   function handleForward() {
     console.log('handleForward called, canGoForward:', canGoForward, 'isLastCard:', isLastCard, 'internalIndex:', internalIndex);
     if (canGoForward) {
-      internalIndex++;
+      // Skip transition when navigating
+      skipTransition = true;
       isZoomed = false;
       showTapPrompt = true;
+      internalIndex++;
       console.log('Moving forward to index:', internalIndex);
     } else if (isLastCard) {
       // On last card, go to end view
@@ -86,6 +92,7 @@
         {showTapPrompt}
         {tapPromptText}
         {devMode}
+        {skipTransition}
         onZoom={handleCardZoom}
       />
     </div>

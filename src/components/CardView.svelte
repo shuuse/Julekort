@@ -12,7 +12,8 @@
     showTapPrompt = false,
     tapPromptText = 'Tap to zoom',
     onZoom = () => {},
-    devMode = false
+    devMode = false,
+    skipTransition = false
   } = $props();
 
   let isAnimating = $state(false);
@@ -111,13 +112,9 @@
         src={imagePath}
         alt="Christmas card {year}"
         class="card-image"
+        class:no-transition={skipTransition}
         style={imageStyle()}
       />
-      {#if showTapPrompt && !isZoomed && !devMode}
-        <div class="tap-prompt">
-          {tapPromptText}
-        </div>
-      {/if}
       {#if devMode}
         <div class="dev-mode-indicator">
           DEV MODE - Click {clicks.length === 0 ? 'top-left corner' : 'bottom-right corner'} of target area
@@ -125,6 +122,12 @@
       {/if}
     </div>
   </button>
+
+  {#if showTapPrompt && !isZoomed && !devMode}
+    <div class="tap-prompt">
+      {tapPromptText}
+    </div>
+  {/if}
 </div>
 
 <style>
@@ -178,20 +181,18 @@
     will-change: transform;
   }
 
+  .card-image.no-transition {
+    transition: none;
+  }
+
   .tap-prompt {
-    position: absolute;
-    bottom: var(--spacing-md);
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.8);
-    color: var(--color-text-primary);
-    padding: var(--spacing-xs) var(--spacing-md);
-    border-radius: 20px;
+    text-align: center;
+    margin-top: var(--spacing-md);
+    color: var(--color-text-secondary);
     font-size: var(--font-size-small);
     opacity: 0;
-    animation: fadeInOut 2s ease-in-out infinite;
+    animation: fadeInOut 3s ease-in-out infinite;
     pointer-events: none;
-    z-index: 10;
   }
 
   .dev-mode-indicator {
