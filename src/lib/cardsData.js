@@ -12,7 +12,7 @@ export const cards = [
   // 2024 - Current year (they have the physical card, this is just the start)
   {
     year: 2024,
-    imagePath: '/cards/2024.png',
+    imagePath: 'cards/2024.png',
     isCurrentYear: true,
     title: {
       en: 'Christmas, 2024',
@@ -29,7 +29,7 @@ export const cards = [
   // Previous years
   {
     year: 2023,
-    imagePath: '/cards/2023.png',
+    imagePath: 'cards/2023.png',
     isCurrentYear: false,
     title: {
       en: 'Christmas, 2023',
@@ -44,7 +44,7 @@ export const cards = [
   },
   {
     year: 2022,
-    imagePath: '/cards/2022.png',
+    imagePath: 'cards/2022.png',
     isCurrentYear: false,
     title: {
       en: 'Christmas, 2022',
