@@ -8,14 +8,14 @@ export const translations = {
     // Entry screen
     title: "A little Christmas tradition…",
     subtitle: "Every year, we hide a tiny secret in our Christmas card photos.",
-    instruction: "Tap below to start your journey back in time.",
+    instruction: "Take a look",
 
     // Current year back
     currentYearBack: "This year's secret is still hidden.",
     currentYearBridge: "Let's look at previous years…",
 
     // Card interaction
-    tapToZoom: "Tap to zoom",
+    tapToZoom: "Tap to reveal",
     continue: "Continue",
 
     // Navigation
@@ -24,8 +24,8 @@ export const translations = {
     home: "Start over",
 
     // End screen
-    endTitle: "You found every little secret.",
-    endMessage: "Thanks for being part of our story.",
+    endTitle: "May every year be another wonderful secret",
+    endMessage: "Thanks for being part of our story!",
     returnToStart: "Return to start"
   },
 
@@ -33,14 +33,14 @@ export const translations = {
     // Entry screen
     title: "En liten juletradisjon…",
     subtitle: "Hvert år gjemmer vi en liten hemmelighet i julekortbildene våre.",
-    instruction: "Trykk nedenfor for å starte reisen tilbake i tid.",
+    instruction: "Ta en titt!",
 
     // Current year back
     currentYearBack: "Årets hemmelighet er fortsatt skjult.",
     currentYearBridge: "La oss se på tidligere år…",
 
     // Card interaction
-    tapToZoom: "Trykk for å zoome",
+    tapToZoom: "Trykk for å avsløre",
     continue: "Fortsett",
 
     // Navigation
@@ -49,7 +49,7 @@ export const translations = {
     home: "Start på nytt",
 
     // End screen
-    endTitle: "Du fant alle de små hemmelighetene.",
+    endTitle: "May every year be another wonderful secret",
     endMessage: "Takk for at du er en del av historien vår.",
     returnToStart: "Tilbake til start"
   }

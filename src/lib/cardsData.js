@@ -83,7 +83,7 @@ export const cards = [
     zoomTarget: {
       x: 40.7,
       y: 86.2,
-      maxZoom: 1.5,  // Very wide box (67.6% x 26.0%) = minimal zoom
+      maxZoom: 1.3,  // Very wide box (67.6% x 26.0%) = minimal zoom
       rotation: 0
     }
   },
