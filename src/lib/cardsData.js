@@ -59,7 +59,7 @@ export const cards = [
   },
   {
     year: 2021,
-    imagePath: '/cards/2021.png',
+    imagePath: 'cards/2021.png',
     isCurrentYear: false,
     title: {
       en: 'Christmas, 2021',
@@ -74,7 +74,7 @@ export const cards = [
   },
   {
     year: 2020,
-    imagePath: '/cards/2020.jpg',
+    imagePath: 'cards/2020.jpg',
     isCurrentYear: false,
     title: {
       en: 'Christmas, 2020',
@@ -89,7 +89,7 @@ export const cards = [
   },
   {
     year: 2019,
-    imagePath: '/cards/2019.jpg',
+    imagePath: 'cards/2019.jpg',
     isCurrentYear: false,
     title: {
       en: 'Christmas, 2019',
@@ -104,7 +104,7 @@ export const cards = [
   },
   {
     year: 2018,
-    imagePath: '/cards/2018.jpg',
+    imagePath: 'cards/2018.jpg',
     isCurrentYear: false,
     title: {
       en: 'Christmas, 2018',
@@ -119,7 +119,7 @@ export const cards = [
   },
   {
     year: 2017,
-    imagePath: '/cards/2017.jpg',
+    imagePath: 'cards/2017.jpg',
     isCurrentYear: false,
     title: {
       en: 'Christmas, 2017',
@@ -134,7 +134,7 @@ export const cards = [
   },
   {
     year: 2016,
-    imagePath: '/cards/2016.jpg',
+    imagePath: 'cards/2016.jpg',
     isCurrentYear: false,
     title: {
       en: 'Christmas, 2016',
@@ -149,7 +149,7 @@ export const cards = [
   },
   {
     year: 2015,
-    imagePath: '/cards/2015.jpg',
+    imagePath: 'cards/2015.jpg',
     isCurrentYear: false,
     title: {
       en: 'Christmas, 2015',
@@ -164,7 +164,7 @@ export const cards = [
   },
   {
     year: 2014,
-    imagePath: '/cards/2014.jpg',
+    imagePath: 'cards/2014.jpg',
     isCurrentYear: false,
     title: {
       en: 'Christmas, 2014',
@@ -179,7 +179,7 @@ export const cards = [
   },
   {
     year: 2013,
-    imagePath: '/cards/2013.jpg',
+    imagePath: 'cards/2013.jpg',
     isCurrentYear: false,
     title: {
       en: 'Christmas, 2013',
@@ -194,7 +194,7 @@ export const cards = [
   },
   {
     year: 2012,
-    imagePath: '/cards/2012.jpg',
+    imagePath: 'cards/2012.jpg',
     isCurrentYear: false,
     title: {
       en: 'Christmas, 2012',
@@ -209,7 +209,7 @@ export const cards = [
   },
   {
     year: 2011,
-    imagePath: '/cards/2011.jpg',
+    imagePath: 'cards/2011.jpg',
     isCurrentYear: false,
     title: {
       en: 'Christmas, 2011',
@@ -224,7 +224,7 @@ export const cards = [
   },
   {
     year: 2010,
-    imagePath: '/cards/2010.jpg',
+    imagePath: 'cards/2010.jpg',
     isCurrentYear: false,
     title: {
       en: 'Christmas, 2010',
@@ -239,7 +239,7 @@ export const cards = [
   },
   {
     year: 2009,
-    imagePath: '/cards/2009.jpg',
+    imagePath: 'cards/2009.jpg',
     isCurrentYear: false,
     title: {
       en: 'Christmas, 2009',
@@ -254,7 +254,7 @@ export const cards = [
   },
   {
     year: 2008,
-    imagePath: '/cards/2008.jpg',
+    imagePath: 'cards/2008.jpg',
     isCurrentYear: false,
     title: {
       en: 'Christmas, 2008',
