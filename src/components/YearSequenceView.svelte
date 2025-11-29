@@ -50,16 +50,20 @@
 
   function handleBack() {
     if (canGoBack) {
-      // Fade out, reset state, change card, fade in
+      // Fade out
       isFading = true;
       setTimeout(() => {
+        // Change card while faded out
         skipTransition = true;
         isZoomed = false;
         showTapPrompt = true;
         internalIndex--;
-        setTimeout(() => {
-          isFading = false;
-        }, 100);
+        // Wait a tick for the DOM to update with new card before fading in
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            isFading = false;
+          }, 100);
+        });
       }, 200);
     }
   }
@@ -67,17 +71,21 @@
   function handleForward() {
     console.log('handleForward called, canGoForward:', canGoForward, 'isLastCard:', isLastCard, 'internalIndex:', internalIndex);
     if (canGoForward) {
-      // Fade out, reset state, change card, fade in
+      // Fade out
       isFading = true;
       setTimeout(() => {
+        // Change card while faded out
         skipTransition = true;
         isZoomed = false;
         showTapPrompt = true;
         internalIndex++;
         console.log('Moving forward to index:', internalIndex);
-        setTimeout(() => {
-          isFading = false;
-        }, 100);
+        // Wait a tick for the DOM to update with new card before fading in
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            isFading = false;
+          }, 100);
+        });
       }, 200);
     } else if (isLastCard) {
       // On last card, go to end view
