@@ -92,6 +92,8 @@
       tapPromptText={t('tapToZoom', locale)}
       currentYearBackText={t('currentYearBack', locale)}
       homeText={t('home', locale)}
+      seeYearBeforeText={t('seeYearBefore', locale)}
+      seeYearAfterText={t('seeYearAfter', locale)}
       onContinue={handleContinueFromSequence}
       onHome={handleReturnHome}
     />

@@ -19,7 +19,8 @@ export const translations = {
     continue: "Continue",
 
     // Navigation
-    seeYearBefore: "See the year before",
+    seeYearBefore: "The year before",
+    seeYearAfter: "The year after",
     finish: "Finish",
     home: "Start over",
 
@@ -44,7 +45,8 @@ export const translations = {
     continue: "Fortsett",
 
     // Navigation
-    seeYearBefore: "Se året før",
+    seeYearBefore: "Året før",
+    seeYearAfter: "Året etter",
     finish: "Ferdig",
     home: "Start på nytt",
 
