@@ -59,8 +59,8 @@
         internalIndex--;
         setTimeout(() => {
           isFading = false;
-        }, 50);
-      }, 150);
+        }, 100);
+      }, 200);
     }
   }
 
@@ -77,8 +77,8 @@
         console.log('Moving forward to index:', internalIndex);
         setTimeout(() => {
           isFading = false;
-        }, 50);
-      }, 150);
+        }, 100);
+      }, 200);
     } else if (isLastCard) {
       // On last card, go to end view
       console.log('Last card, calling onContinue');
