@@ -12,6 +12,12 @@
 </script>
 
 <div class="intro-view">
+  <img
+    src="/christmas_garland.png"
+    alt=""
+    class="garland-decoration"
+    aria-hidden="true"
+  />
   <div class="intro-content">
     <div class="intro-header">
       <h1 class="intro-title">{title}</h1>
@@ -31,6 +37,20 @@
     align-items: center;
     justify-content: center;
     padding: var(--spacing-lg) var(--spacing-md);
+    position: relative;
+  }
+
+  .garland-decoration {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    opacity: 0.9;
+    pointer-events: none;
+    animation: fadeIn var(--timing-slow) var(--ease);
   }
 
   .intro-content {

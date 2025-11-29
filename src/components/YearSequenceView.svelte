@@ -24,6 +24,7 @@
   let showTapPrompt = $state(true);
   let internalIndex = $state(currentIndex);
   let skipTransition = $state(false);
+  let isFading = $state(false);
 
   let currentCard = $derived(cards[internalIndex] || {});
   let canGoBack = $derived(internalIndex > 0);
@@ -49,23 +50,35 @@
 
   function handleBack() {
     if (canGoBack) {
-      // Skip transition when navigating
-      skipTransition = true;
-      isZoomed = false;
-      showTapPrompt = true;
-      internalIndex--;
+      // Fade out, reset state, change card, fade in
+      isFading = true;
+      setTimeout(() => {
+        skipTransition = true;
+        isZoomed = false;
+        showTapPrompt = true;
+        internalIndex--;
+        setTimeout(() => {
+          isFading = false;
+        }, 50);
+      }, 150);
     }
   }
 
   function handleForward() {
     console.log('handleForward called, canGoForward:', canGoForward, 'isLastCard:', isLastCard, 'internalIndex:', internalIndex);
     if (canGoForward) {
-      // Skip transition when navigating
-      skipTransition = true;
-      isZoomed = false;
-      showTapPrompt = true;
-      internalIndex++;
-      console.log('Moving forward to index:', internalIndex);
+      // Fade out, reset state, change card, fade in
+      isFading = true;
+      setTimeout(() => {
+        skipTransition = true;
+        isZoomed = false;
+        showTapPrompt = true;
+        internalIndex++;
+        console.log('Moving forward to index:', internalIndex);
+        setTimeout(() => {
+          isFading = false;
+        }, 50);
+      }, 150);
     } else if (isLastCard) {
       // On last card, go to end view
       console.log('Last card, calling onContinue');
@@ -84,7 +97,7 @@
     />
 
     <!-- Current card -->
-    <div class="current-card">
+    <div class="current-card" class:fading={isFading}>
       <CardView
         year={currentCard.year}
         imagePath={currentCard.imagePath}
@@ -158,6 +171,11 @@
   .current-card {
     margin: var(--spacing-lg) 0;
     animation: fadeIn var(--timing-medium) var(--ease);
+    transition: opacity 150ms ease-out;
+  }
+
+  .current-card.fading {
+    opacity: 0;
   }
 
   .navigation-controls {
