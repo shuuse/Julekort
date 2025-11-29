@@ -12,6 +12,12 @@
 </script>
 
 <div class="end-view">
+  <img
+    src="/christmas_garland.png"
+    alt=""
+    class="garland-decoration"
+    aria-hidden="true"
+  />
   <div class="end-content">
     <div class="end-icon">✨</div>
     <h1 class="end-title">{title}</h1>
@@ -32,6 +38,20 @@
     align-items: center;
     justify-content: center;
     padding: var(--spacing-lg);
+    position: relative;
+  }
+
+  .garland-decoration {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    opacity: 0.9;
+    pointer-events: none;
+    animation: fadeIn var(--timing-slow) var(--ease);
   }
 
   .end-content {
