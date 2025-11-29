@@ -168,7 +168,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: var(--spacing-md);
+    padding: var(--spacing-xs) var(--spacing-md);
     background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
     backdrop-filter: blur(10px);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -178,8 +178,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-xs);
-    padding: var(--spacing-sm);
+    gap: 4px;
+    padding: var(--spacing-xs);
     color: var(--color-text-primary);
     background: none;
     border: none;
