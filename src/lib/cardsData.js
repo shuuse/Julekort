@@ -18,6 +18,10 @@ export const cards = [
       en: 'Christmas, 2024',
       no: 'Julen 2024'
     },
+    description: {
+      en: "Christmas Eve in Palo Alto is best celebrated with a church service at Stanford. But who places themselves above both church and state?",
+      no: "Julaften i Palo Alto feires best med gudstjeneste i kirken på Stanford. Men hvem setter seg selv over både kirke og stat?"
+    },
     zoomTarget: {
       x: 72.7,
       y: 46.5,
@@ -35,6 +39,10 @@ export const cards = [
       en: 'Christmas, 2023',
       no: 'Julen 2023'
     },
+    description: {
+      en: "Lillehammer is the number one Christmas town! In the pedestrian street, you constantly meet celebrities.",
+      no: "Lillehammer er juleby nummer én! I Gågata treffer man stadig kjente."
+    },
     zoomTarget: {
       x: 42.8,
       y: 32.9,
@@ -49,6 +57,10 @@ export const cards = [
     title: {
       en: 'Christmas, 2022',
       no: 'Julen 2022'
+    },
+    description: {
+      en: "San Francisco is a beautiful city, if you just look the right way.",
+      no: "San Francisco er en vakker by, hvis man bare ser rett vei."
     },
     zoomTarget: {
       x: 14.1,
@@ -65,6 +77,10 @@ export const cards = [
       en: 'Christmas, 2021',
       no: 'Julen 2021'
     },
+    description: {
+      en: "Some messages are so secret that only the most eager treasure hunters find the hidden message.",
+      no: "Noen beskjeder er så hemmelige at kun de aller mest ivrige skattejegerne finner det skjulte budskapet."
+    },
     zoomTarget: {
       x: 26.5,
       y: 81.2,
@@ -79,6 +95,10 @@ export const cards = [
     title: {
       en: 'Christmas, 2020',
       no: 'Julen 2020'
+    },
+    description: {
+      en: "Hetch Hetchy in Yosemite is beautiful. We walked on foot, even though the shadow indicates something else.",
+      no: "Hetch Hetchy i Yosemite er vakkert. Vi gikk til fots, selv om skyggen indikerer noe annet."
     },
     zoomTarget: {
       x: 40.7,
@@ -95,6 +115,10 @@ export const cards = [
       en: 'Christmas, 2019',
       no: 'Julen 2019'
     },
+    description: {
+      en: "This one became way too difficult, but 2019 was when Momo was scary enough to hide in the tree.",
+      no: "Denne ble alt for vanskelig, men 2019 var Momo skummel nok til å skjule seg i treet."
+    },
     zoomTarget: {
       x: 12.4,
       y: 55.8,
@@ -109,6 +133,10 @@ export const cards = [
     title: {
       en: 'Christmas, 2018',
       no: 'Julen 2018'
+    },
+    description: {
+      en: "Pre-Christmas in Palm Springs. How many hands does Kristin have?",
+      no: "Førjul i Palm Springs. Hvor mange hender har Kristin?"
     },
     zoomTarget: {
       x: 17.2,
@@ -125,6 +153,10 @@ export const cards = [
       en: 'Christmas, 2017',
       no: 'Julen 2017'
     },
+    description: {
+      en: "Hawaii is gorgeous. Can we see the birth certificate?",
+      no: "Hawaii er nydelig. Får vi se fødselsattesten?"
+    },
     zoomTarget: {
       x: 26.5,
       y: 87.4,
@@ -139,6 +171,10 @@ export const cards = [
     title: {
       en: 'Christmas, 2016',
       no: 'Julen 2016'
+    },
+    description: {
+      en: "A seagull does what seagulls do. On whom?",
+      no: "En måke gjør det måker gjør. På hvem?"
     },
     zoomTarget: {
       x: 17.6,
@@ -155,6 +191,10 @@ export const cards = [
       en: 'Christmas, 2015',
       no: 'Julen 2015'
     },
+    description: {
+      en: "Life as parents of young children is exhausting! Not very well hidden either!",
+      no: "Livet som småbarnsforeldre tar på! Ikke særlig godt skjult eller!"
+    },
     zoomTarget: {
       x: 71.7,
       y: 46.8,
@@ -169,6 +209,10 @@ export const cards = [
     title: {
       en: 'Christmas, 2014',
       no: 'Julen 2014'
+    },
+    description: {
+      en: "Royalists stand together, and we have very distinguished guests.",
+      no: "Royalister står sammen, og vi har storfint besøk."
     },
     zoomTarget: {
       x: 87.5,
@@ -185,6 +229,10 @@ export const cards = [
       en: 'Christmas, 2013',
       no: 'Julen 2013'
     },
+    description: {
+      en: "We turn back the clock. But who is playing the grand piano?",
+      no: "Vi skrur klokken tilbake. Men hvem spiller flygel?"
+    },
     zoomTarget: {
       x: 1.4,
       y: 45.1,
@@ -199,6 +247,10 @@ export const cards = [
     title: {
       en: 'Christmas, 2012',
       no: 'Julen 2012'
+    },
+    description: {
+      en: "Many believe the dog is fake. That's correct. But that's not the scary part!",
+      no: "Mange mener hunden er uekte. Det stemmer. Men det er ikke det skumle!"
     },
     zoomTarget: {
       x: 93.5,
@@ -215,6 +267,10 @@ export const cards = [
       en: 'Christmas, 2011',
       no: 'Julen 2011'
     },
+    description: {
+      en: "The Christmas rush is busy for many! Sometimes you feel completely boiled (or baked). This is Oscar and Ida's favorite Christmas card.",
+      no: "Julestria er travel for mange! Av og til føler man seg helt kokt (eller bakt). Dette er Oscar og Idas favoritt julekort."
+    },
     zoomTarget: {
       x: 67.5,
       y: 50.4,
@@ -229,6 +285,10 @@ export const cards = [
     title: {
       en: 'Christmas, 2010',
       no: 'Julen 2010'
+    },
+    description: {
+      en: "Look carefully at Ida's hand. This is the first hint that Oscar is on his way.",
+      no: "Se nøye etter i Idas hånd. Dette er første hint om at Oscar er i anmarsj."
     },
     zoomTarget: {
       x: 47.0,
@@ -245,6 +305,10 @@ export const cards = [
       en: 'Christmas, 2009',
       no: 'Julen 2009'
     },
+    description: {
+      en: "First Christmas card with Ida. Since she is quite smart, she also got a 35% larger head in this picture. Not everyone thought this card was equally festive.",
+      no: "Første julekort med Ida. Ettersom hun er ganske smart, fikk hun også 35% større hode på dette bildet. Ikke alle syns dette kortet var like festlig."
+    },
     zoomTarget: {
       x: 39.0,
       y: 46.0,
@@ -259,6 +323,10 @@ export const cards = [
     title: {
       en: 'Christmas, 2008',
       no: 'Julen 2008'
+    },
+    description: {
+      en: "Kristin and Simen's first Christmas card. Or.. Simen's first Christmas card. Kristin didn't get to see the picture before the card was already in the mail. And thus a tradition was started!",
+      no: "Kristin og Simens første julekort. Eller.. Simens første julekort. Kristin fikk ikke se bildet før kortet allerede var i posten. Og dermed var en tradisjon startet!"
     },
     zoomTarget: {
       x: 56.5,
