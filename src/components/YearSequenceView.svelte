@@ -13,6 +13,8 @@
     tapPromptText = '',
     currentYearBackText = '',
     homeText = '',
+    seeYearBeforeText = '',
+    seeYearAfterText = '',
     devMode = false,
     onContinue = () => {},
     onHome = () => {}
@@ -100,6 +102,18 @@
     <!-- Navigation controls -->
     <nav class="navigation-controls" aria-label="Card navigation">
       <button
+        class="nav-button back-button"
+        onclick={handleBack}
+        disabled={!canGoBack}
+        aria-label={seeYearAfterText}
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+        <span class="nav-label">{seeYearAfterText}</span>
+      </button>
+
+      <button
         class="nav-button home-button"
         onclick={onHome}
         aria-label={homeText}
@@ -114,12 +128,12 @@
       <button
         class="nav-button forward-button"
         onclick={handleForward}
-        aria-label={isLastCard ? 'Finish' : 'See the year before'}
+        aria-label={isLastCard ? 'Finish' : seeYearBeforeText}
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M9 18l6-6-6-6"/>
         </svg>
-        <span class="nav-label">{isLastCard ? (locale === 'no' ? 'Ferdig' : 'Finish') : (locale === 'no' ? 'Se året før' : 'See the year before')}</span>
+        <span class="nav-label">{isLastCard ? (locale === 'no' ? 'Ferdig' : 'Finish') : seeYearBeforeText}</span>
       </button>
     </nav>
   </div>
