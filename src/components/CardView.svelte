@@ -11,6 +11,8 @@
     isZoomed = false,
     showTapPrompt = false,
     tapPromptText = 'Tap to zoom',
+    description = null,
+    locale = 'en',
     onZoom = () => {},
     devMode = false,
     skipTransition = false
@@ -128,6 +130,12 @@
       {tapPromptText}
     </div>
   {/if}
+
+  {#if description && !devMode}
+    <div class="card-description">
+      {description[locale] || description.en}
+    </div>
+  {/if}
 </div>
 
 <style>
@@ -195,6 +203,17 @@
     pointer-events: none;
   }
 
+  .card-description {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-md);
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-small);
+    line-height: 1.6;
+    opacity: 0.8;
+    animation: fadeIn 0.5s ease-in;
+  }
+
   .dev-mode-indicator {
     position: absolute;
     top: var(--spacing-md);
@@ -213,6 +232,11 @@
   @keyframes fadeInOut {
     0%, 100% { opacity: 0; }
     50% { opacity: 1; }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 0.8; }
   }
 
   /* Reduced motion support */

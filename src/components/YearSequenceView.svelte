@@ -111,6 +111,8 @@
         imagePath={currentCard.imagePath}
         zoomTarget={currentCard.zoomTarget || { x: 50, y: 50, maxZoom: 3, rotation: 0 }}
         isCurrentYear={currentCard.isCurrentYear}
+        description={currentCard.description}
+        {locale}
         {isZoomed}
         {showTapPrompt}
         {tapPromptText}
