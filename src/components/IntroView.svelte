@@ -13,7 +13,7 @@
 
 <div class="intro-view">
   <img
-    src="/christmas_garland.png"
+    src="christmas_garland.png"
     alt=""
     class="garland-decoration"
     aria-hidden="true"
