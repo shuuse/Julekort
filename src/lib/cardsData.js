@@ -120,9 +120,9 @@ export const cards = [
       no: "Denne ble alt for vanskelig, men 2019 var Momo skummel nok til å skjule seg i treet."
     },
     zoomTarget: {
-      x: 12.4,
-      y: 55.8,
-      maxZoom: 1,  // Very tall box (11.0% x 79.5%) = minimal zoom
+      x: 22.6,
+      y: 65.8,
+      maxZoom: 1.5,  // Very tall box (11.0% x 79.5%) = minimal zoom
       rotation: 180
     }
   },
