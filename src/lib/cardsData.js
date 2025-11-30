@@ -40,7 +40,7 @@ export const cards = [
       no: 'Julen 2023'
     },
     description: {
-      en: "Lillehammer is the number one Christmas town! In the pedestrian street, you constantly meet celebrities.",
+      en: "Lillehammer is the number one Christmas town! In the pedestrian street, you sometimes recognize people.",
       no: "Lillehammer er juleby nummer én! I Gågata treffer man stadig kjente."
     },
     zoomTarget: {
@@ -192,14 +192,14 @@ export const cards = [
       no: 'Julen 2015'
     },
     description: {
-      en: "Life as parents of young children is exhausting! Not very well hidden either!",
-      no: "Livet som småbarnsforeldre tar på! Ikke særlig godt skjult eller!"
+      en: "In Oslo, we lived next door to an ice rink. Fun times and smiles all around.",
+      no: "Skøyter og bandy på Ullernbanen er gøy - syns alle?"
     },
     zoomTarget: {
-      x: 71.7,
-      y: 46.8,
-      maxZoom: 1.4,  // Very large box (48.5% x 69.7%) = minimal zoom
-      rotation: 0
+      x: 57.8,
+      y: 68.3,
+      maxZoom: 3,  // Medium box (25.1% x 24.5%) = moderate zoom
+      rotation: 180
     }
   },
   {

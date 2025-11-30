@@ -15,7 +15,7 @@ export const translations = {
     currentYearBridge: "Let's look at previous years…",
 
     // Card interaction
-    tapToZoom: "Tap to reveal",
+    tapToZoom: "Tap the photo to reveal",
     continue: "Continue",
 
     // Navigation
@@ -41,7 +41,7 @@ export const translations = {
     currentYearBridge: "La oss se på tidligere år…",
 
     // Card interaction
-    tapToZoom: "Trykk for å avsløre",
+    tapToZoom: "Trykk på bildet for å avsløre",
     continue: "Fortsett",
 
     // Navigation

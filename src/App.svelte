@@ -37,6 +37,12 @@
       console.log('Click two corners of the target area on each card to log coordinates');
       console.log('======================');
     }
+
+    // Preload first 3 card images for better initial experience
+    cards.slice(0, 3).forEach(card => {
+      const img = new Image();
+      img.src = card.imagePath;
+    });
   });
 
   // Get current year card
