@@ -31,6 +31,21 @@
   let canGoForward = $derived(internalIndex < cards.length - 1);
   let isLastCard = $derived(internalIndex === cards.length - 1);
 
+  // Preload adjacent images for smoother transitions
+  $effect(() => {
+    // Preload next card (year before - forward direction)
+    if (internalIndex < cards.length - 1) {
+      const nextImg = new Image();
+      nextImg.src = cards[internalIndex + 1].imagePath;
+    }
+
+    // Preload previous card (year after - back direction)
+    if (internalIndex > 0) {
+      const prevImg = new Image();
+      prevImg.src = cards[internalIndex - 1].imagePath;
+    }
+  });
+
   function handleCardZoom() {
     skipTransition = false;
     isZoomed = !isZoomed;
