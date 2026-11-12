@@ -145,10 +145,9 @@
         disabled={!canGoBack}
         aria-label={seeYearAfterText}
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M15 18l-6-6 6-6"/>
         </svg>
-        <span class="nav-label">{seeYearAfterText}</span>
       </button>
 
       <button
@@ -156,22 +155,20 @@
         onclick={onHome}
         aria-label={homeText}
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
           <polyline points="9 22 9 12 15 12 15 22"/>
         </svg>
-        <span class="nav-label">{homeText}</span>
       </button>
 
       <button
         class="nav-button forward-button"
         onclick={handleForward}
-        aria-label={isLastCard ? 'Finish' : seeYearBeforeText}
+        aria-label={isLastCard ? (locale === 'no' ? 'Ferdig' : 'Finish') : seeYearBeforeText}
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M9 18l6-6-6-6"/>
         </svg>
-        <span class="nav-label">{isLastCard ? (locale === 'no' ? 'Ferdig' : 'Finish') : seeYearBeforeText}</span>
       </button>
     </nav>
   </div>
@@ -219,15 +216,14 @@
 
   .nav-button {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 4px;
+    justify-content: center;
     padding: var(--spacing-xs);
     color: var(--color-text-primary);
     background: none;
     border: none;
     min-height: 44px;
-    min-width: 60px;
+    min-width: 44px;
   }
 
   .nav-button:disabled {
@@ -240,11 +236,33 @@
     height: 24px;
   }
 
-  .nav-label {
-    font-size: var(--font-size-small);
+  /* Home is secondary: smaller and dimmer than back/forward */
+  .home-button {
     color: var(--color-text-secondary);
   }
 
+  /* Back/forward are the main controls: large round buttons with a bigger arrow */
+  .back-button,
+  .forward-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transition: background-color var(--timing-fast) var(--ease), opacity var(--timing-fast) var(--ease);
+  }
+
+  .back-button:hover:not(:disabled),
+  .forward-button:hover:not(:disabled) {
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .back-button svg,
+  .forward-button svg {
+    width: 32px;
+    height: 32px;
+    stroke-width: 2.5;
+  }
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -262,8 +280,10 @@
       padding-bottom: 100px;
     }
 
-    .nav-label {
-      font-size: 0.75rem;
+    .back-button,
+    .forward-button {
+      width: 56px;
+      height: 56px;
     }
   }
 
