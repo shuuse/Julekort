@@ -9,11 +9,32 @@
  */
 
 export const cards = [
-  // 2024 - Current year (they have the physical card, this is just the start)
+  // 2025 - Current year (they have the physical card, this is just the start)
+  {
+    year: 2025,
+    imagePath: 'cards/2025.jpg',
+    isCurrentYear: true,
+    title: {
+      en: 'Christmas, 2025',
+      no: 'Julen 2025'
+    },
+    description: {
+      en: "The 17th of May is a day of celebration! Make sure to hold on to the flag!",
+      no: "17. mai er en festdag! Pass på å holde godt fast i flagget!"
+    },
+    zoomTarget: {
+      x: 86.7,
+      y: 67.4,
+      maxZoom: 4.5,  // Small box (12.7% x 20.3%) = tight zoom
+      rotation: 0
+    }
+  },
+
+  // Previous years
   {
     year: 2024,
     imagePath: 'cards/2024.png',
-    isCurrentYear: true,
+    isCurrentYear: false,
     title: {
       en: 'Christmas, 2024',
       no: 'Julen 2024'
@@ -29,8 +50,6 @@ export const cards = [
       rotation: 90
     }
   },
-
-  // Previous years
   {
     year: 2023,
     imagePath: 'cards/2023.png',

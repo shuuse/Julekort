@@ -15,7 +15,8 @@ Place your yearly Christmas card images in this directory.
 
 ## To add a new year's card:
 1. Add the image file to this directory (e.g., `public/cards/2023.jpg`)
-2. Update `src/lib/cardsData.js` with the year's metadata:
+2. Run `scripts/make-thumbnails.sh` from the repo root to create its start page tile (`public/cards/thumbs/2023.jpg`)
+3. Update `src/lib/cardsData.js` with the year's metadata:
    - Year number
    - Image path
    - Title (EN/NO)

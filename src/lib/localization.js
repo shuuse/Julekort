@@ -7,7 +7,7 @@ export const translations = {
   en: {
     // Entry screen
     title: "A little Christmas tradition…",
-    subtitle: "Every year, we hide a tiny secret in our Christmas card photos.",
+    subtitle: "Sometimes, we hide a tiny secret in our Christmas card photos.",
     instruction: "Take a look",
 
     // Current year back
@@ -33,7 +33,7 @@ export const translations = {
   no: {
     // Entry screen
     title: "En liten juletradisjon…",
-    subtitle: "Hvert år gjemmer vi en liten hemmelighet i julekortbildene våre.",
+    subtitle: "Noen ganger gjemmer vi en liten hemmelighet i julekortbildene våre.",
     instruction: "Ta en titt!",
 
     // Current year back

@@ -58,6 +58,11 @@
     currentCardIndex = 0;
   }
 
+  function handleSelectCard(index) {
+    currentState = STATES.SEQUENCE;
+    currentCardIndex = index;
+  }
+
   function handleContinueFromSequence() {
     currentState = STATES.END;
   }
@@ -87,7 +92,10 @@
       title={t('title', locale)}
       subtitle={t('subtitle', locale)}
       instruction={t('instruction', locale)}
+      {cards}
+      {locale}
       onStartJourney={handleStartJourney}
+      onSelectCard={handleSelectCard}
     />
   {:else if currentState === STATES.SEQUENCE}
     <YearSequenceView

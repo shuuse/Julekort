@@ -129,9 +129,10 @@ Then configure GitHub Pages to use the `gh-pages` branch.
 ### Add a New Year's Card
 
 1. Add the image to `public/cards/YYYY.jpg`
-2. Add an entry at the top of the `cards` array in `src/lib/cardsData.js`
-3. Make sure the previous current year now has `isCurrentYear: false` and add hints for it
-4. Set the new year to `isCurrentYear: true` with empty hints
+2. Run `scripts/make-thumbnails.sh` to create its start page tile in `public/cards/thumbs/`
+3. Add an entry at the top of the `cards` array in `src/lib/cardsData.js`
+4. Make sure the previous current year now has `isCurrentYear: false` and add hints for it
+5. Set the new year to `isCurrentYear: true` with empty hints
 
 ### Change Colors
 
