@@ -3,6 +3,8 @@
    * CardView Component
    * Displays a card with zoom/pan/rotate animation to reveal Easter eggs
    */
+  import { fade } from 'svelte/transition';
+
   let {
     year = 2024,
     imagePath = '',
@@ -11,6 +13,8 @@
     isZoomed = false,
     showTapPrompt = false,
     tapPromptText = 'Tap to zoom',
+    showFirstTapHint = false,
+    firstTapHintText = '',
     description = null,
     locale = 'en',
     onZoom = () => {},
@@ -21,6 +25,9 @@
   let isAnimating = $state(false);
   let imageContainer = $state(null);
   let clicks = $state([]);
+
+  // The first-time overlay is for visitors only (dev mode is for placing zoom targets)
+  let displayFirstTapHint = $derived(showFirstTapHint && !isZoomed && !devMode);
 
   function handleCardClick(event) {
     if (devMode) {
@@ -122,10 +129,16 @@
           DEV MODE - Click {clicks.length === 0 ? 'top-left corner' : 'bottom-right corner'} of target area
         </div>
       {/if}
+      {#if displayFirstTapHint}
+        <div class="tap-hint" aria-hidden="true" transition:fade={{ duration: 300 }}>
+          <div class="tap-hint-ripple"></div>
+          <p class="tap-hint-text">{firstTapHintText}</p>
+        </div>
+      {/if}
     </div>
   </button>
 
-  {#if showTapPrompt && !isZoomed && !devMode}
+  {#if showTapPrompt && !isZoomed && !devMode && !displayFirstTapHint}
     <div class="tap-prompt">
       {tapPromptText}
     </div>
@@ -214,6 +227,55 @@
     animation: fadeIn 0.5s ease-in;
   }
 
+  /* First-time overlay: dims the photo and shows a pulsing "tap here" marker.
+     It lets taps through, so the tap that dismisses it also reveals the secret. */
+  .tap-hint {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-md);
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+  }
+
+  .tap-hint-ripple {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 16px rgba(255, 255, 255, 0.6);
+  }
+
+  .tap-hint-ripple::before,
+  .tap-hint-ripple::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    animation: tapRipple 1.8s ease-out infinite;
+  }
+
+  .tap-hint-ripple::after {
+    animation-delay: 0.9s;
+  }
+
+  .tap-hint-text {
+    max-width: 16em;
+    color: #ffffff;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.4;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+  }
+
   .dev-mode-indicator {
     position: absolute;
     top: var(--spacing-md);
@@ -227,6 +289,17 @@
     font-weight: 600;
     pointer-events: none;
     z-index: 10;
+  }
+
+  @keyframes tapRipple {
+    from {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    to {
+      transform: scale(3.2);
+      opacity: 0;
+    }
   }
 
   @keyframes fadeInOut {
@@ -248,6 +321,13 @@
     .tap-prompt {
       animation: none;
       opacity: 0.7;
+    }
+
+    .tap-hint-ripple::before,
+    .tap-hint-ripple::after {
+      animation: none;
+      transform: scale(2);
+      opacity: 0.5;
     }
   }
 

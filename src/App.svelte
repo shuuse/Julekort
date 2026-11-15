@@ -104,6 +104,7 @@
       {locale}
       {devMode}
       tapPromptText={t('tapToZoom', locale)}
+      firstTapHintText={t('firstTapHint', locale)}
       currentYearBackText={t('currentYearBack', locale)}
       homeText={t('home', locale)}
       seeYearBeforeText={t('seeYearBefore', locale)}

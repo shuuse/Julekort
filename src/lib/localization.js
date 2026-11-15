@@ -16,6 +16,7 @@ export const translations = {
 
     // Card interaction
     tapToZoom: "Tap the photo to reveal",
+    firstTapHint: "Tap the photo to reveal the hidden secret",
     continue: "Continue",
 
     // Navigation
@@ -42,6 +43,7 @@ export const translations = {
 
     // Card interaction
     tapToZoom: "Trykk på bildet for å avsløre",
+    firstTapHint: "Trykk på bildet for å avsløre den skjulte hemmeligheten",
     continue: "Fortsett",
 
     // Navigation

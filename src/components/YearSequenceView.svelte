@@ -5,12 +5,14 @@
    */
   import CardView from './CardView.svelte';
   import TimelineIndicator from './TimelineIndicator.svelte';
+  import { tapHint } from '../lib/tapHint.svelte.js';
 
   let {
     cards = [],
     currentIndex = 0,
     locale = 'en',
     tapPromptText = '',
+    firstTapHintText = '',
     currentYearBackText = '',
     homeText = '',
     seeYearBeforeText = '',
@@ -46,7 +48,17 @@
     }
   });
 
+  // The first-time overlay gets one showing: it is done once the visitor taps the
+  // photo, moves to another card, or leaves (the cleanup also runs on teardown)
+  $effect(() => {
+    internalIndex;
+    return () => {
+      tapHint.seen = true;
+    };
+  });
+
   function handleCardZoom() {
+    tapHint.seen = true;
     skipTransition = false;
     isZoomed = !isZoomed;
     showTapPrompt = false;
@@ -131,6 +143,8 @@
         {isZoomed}
         {showTapPrompt}
         {tapPromptText}
+        showFirstTapHint={!tapHint.seen}
+        {firstTapHintText}
         {devMode}
         {skipTransition}
         onZoom={handleCardZoom}
