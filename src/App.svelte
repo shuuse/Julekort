@@ -7,15 +7,13 @@
   import LanguageToggle from './components/LanguageToggle.svelte';
   import IntroView from './components/IntroView.svelte';
   import YearSequenceView from './components/YearSequenceView.svelte';
-  import EndView from './components/EndView.svelte';
   import { cards } from './lib/cardsData.js';
   import { detectLanguage, t } from './lib/localization.js';
 
   // Application states
   const STATES = {
     INTRO: 'intro',
-    SEQUENCE: 'sequence',
-    END: 'end'
+    SEQUENCE: 'sequence'
   };
 
   // Reactive state
@@ -63,10 +61,6 @@
     currentCardIndex = index;
   }
 
-  function handleContinueFromSequence() {
-    currentState = STATES.END;
-  }
-
   function handleBackInSequence() {
     if (currentCardIndex > 0) {
       currentCardIndex--;
@@ -109,15 +103,8 @@
       homeText={t('home', locale)}
       seeYearBeforeText={t('seeYearBefore', locale)}
       seeYearAfterText={t('seeYearAfter', locale)}
-      onContinue={handleContinueFromSequence}
+      seeLatestYearText={t('seeLatestYear', locale)}
       onHome={handleReturnHome}
-    />
-  {:else if currentState === STATES.END}
-    <EndView
-      title={t('endTitle', locale)}
-      message={t('endMessage', locale)}
-      returnButtonText={t('returnToStart', locale)}
-      onReturnToStart={handleReturnHome}
     />
   {/if}
 </div>

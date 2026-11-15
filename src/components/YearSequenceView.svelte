@@ -17,8 +17,8 @@
     homeText = '',
     seeYearBeforeText = '',
     seeYearAfterText = '',
+    seeLatestYearText = '',
     devMode = false,
-    onContinue = () => {},
     onHome = () => {}
   } = $props();
 
@@ -30,15 +30,16 @@
 
   let currentCard = $derived(cards[internalIndex] || {});
   let canGoBack = $derived(internalIndex > 0);
-  let canGoForward = $derived(internalIndex < cards.length - 1);
   let isLastCard = $derived(internalIndex === cards.length - 1);
 
   // Preload adjacent images for smoother transitions
   $effect(() => {
-    // Preload next card (year before - forward direction)
-    if (internalIndex < cards.length - 1) {
+    // Preload next card (year before - forward direction); after the oldest
+    // card, forward wraps around to the latest
+    const nextIndex = isLastCard ? 0 : internalIndex + 1;
+    if (nextIndex !== internalIndex) {
       const nextImg = new Image();
-      nextImg.src = cards[internalIndex + 1].imagePath;
+      nextImg.src = cards[nextIndex].imagePath;
     }
 
     // Preload previous card (year after - back direction)
@@ -64,17 +65,6 @@
     showTapPrompt = false;
   }
 
-  function handleContinue() {
-    if (isLastCard) {
-      onContinue();
-    } else {
-      // Move to next card
-      internalIndex++;
-      isZoomed = false;
-      showTapPrompt = true;
-    }
-  }
-
   function handleBack() {
     if (canGoBack) {
       // Fade out
@@ -96,29 +86,21 @@
   }
 
   function handleForward() {
-    console.log('handleForward called, canGoForward:', canGoForward, 'isLastCard:', isLastCard, 'internalIndex:', internalIndex);
-    if (canGoForward) {
-      // Fade out
-      isFading = true;
-      setTimeout(() => {
-        // Change card while faded out
-        skipTransition = true;
-        isZoomed = false;
-        showTapPrompt = true;
-        internalIndex++;
-        console.log('Moving forward to index:', internalIndex);
-        // Wait a tick for the DOM to update with new card before fading in
-        requestAnimationFrame(() => {
-          setTimeout(() => {
-            isFading = false;
-          }, 100);
-        });
-      }, 200);
-    } else if (isLastCard) {
-      // On last card, go to end view
-      console.log('Last card, calling onContinue');
-      onContinue();
-    }
+    // Fade out
+    isFading = true;
+    setTimeout(() => {
+      // Change card while faded out; after the oldest card, wrap around to the latest
+      skipTransition = true;
+      isZoomed = false;
+      showTapPrompt = true;
+      internalIndex = isLastCard ? 0 : internalIndex + 1;
+      // Wait a tick for the DOM to update with new card before fading in
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          isFading = false;
+        }, 100);
+      });
+    }, 200);
   }
 
 </script>
@@ -178,7 +160,7 @@
       <button
         class="nav-button forward-button"
         onclick={handleForward}
-        aria-label={isLastCard ? (locale === 'no' ? 'Ferdig' : 'Finish') : seeYearBeforeText}
+        aria-label={isLastCard ? seeLatestYearText : seeYearBeforeText}
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M9 18l6-6-6-6"/>

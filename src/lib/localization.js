@@ -22,13 +22,8 @@ export const translations = {
     // Navigation
     seeYearBefore: "The year before",
     seeYearAfter: "The year after",
-    finish: "Finish",
-    home: "Start over",
-
-    // End screen
-    endTitle: "May every year be another wonderful secret",
-    endMessage: "Thanks for being part of our story!",
-    returnToStart: "Return to start"
+    seeLatestYear: "Back to the latest year",
+    home: "Start over"
   },
 
   no: {
@@ -49,13 +44,8 @@ export const translations = {
     // Navigation
     seeYearBefore: "Året før",
     seeYearAfter: "Året etter",
-    finish: "Ferdig",
-    home: "Start på nytt",
-
-    // End screen
-    endTitle: "May every year be another wonderful secret",
-    endMessage: "Takk for at du er en del av historien vår.",
-    returnToStart: "Tilbake til start"
+    seeLatestYear: "Tilbake til siste år",
+    home: "Start på nytt"
   }
 };
 
